@@ -14,4 +14,11 @@ async def get_session():
         
         
 class Base(DeclarativeBase):
+    pass
+        
+class BaseUUID(Base):
+    __abstract__ = True
+    
     id: Mapped[UUID] = mapped_column(default=uuid4, primary_key=True)
+    
+    

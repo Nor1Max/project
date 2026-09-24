@@ -1,12 +1,16 @@
-from sqlalchemy.orm import Mapped, mapped_column
-from core import Base
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Numeric
+from core import BaseUUID
+from decimal import Decimal
 
 
-class Product(Base):
+class Product(BaseUUID):
     __tablename__ = 'products'
     
     title: Mapped[str] = mapped_column(unique=True)
     description: Mapped[str | None] 
-    weight: Mapped[float]
-    price: Mapped[float]
+    weight: Mapped[int]
+    price: Mapped[Decimal] = mapped_column(Numeric(10, 2))
+    
+    carts: Mapped[list['Cart']] = relationship(back_populates='product')
     

@@ -9,5 +9,5 @@ from .services import (
 )
 from .security import (
     AccessTokenPayloadDep, RefreshTokenPayloadDep,
-    require_admin, get_current_refresh_token, CurrentRefreshTokenDep,
+    require_admin, get_current_refresh_token, CurrentRefreshTokenDep, UserIdDep
 )

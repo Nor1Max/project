@@ -1,11 +1,11 @@
 from uuid import UUID
-from pydantic import ConfigDict, EmailStr, BaseModel
+from pydantic import ConfigDict, EmailStr, BaseModel, Field
 
 
 class CreateUserSchema(BaseModel):
     
-    first_name: str
-    last_name: str
+    first_name: str = Field(min_length=2, max_length=50, default=None)
+    last_name: str = Field(min_length=2, max_length=50, default=None)
     email: EmailStr
     password: str
     

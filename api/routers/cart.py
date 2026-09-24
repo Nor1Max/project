@@ -1,5 +1,4 @@
-from fastapi import Depends, APIRouter
-from uuid import UUID
+from fastapi import APIRouter
 from api.dependencies import CartServiceDep, AccessTokenPayloadDep
 from schemas import CartOperationSchema, CartResponseSchema
 from models import Cart

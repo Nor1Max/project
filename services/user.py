@@ -1,6 +1,6 @@
 from uuid import UUID
 from repositories import UserRepository
-from schemas import UpdateUserAdminSchema
+from schemas import UpdateUserSchema
 from core import NotFoundError
 from models import User
 
@@ -23,7 +23,7 @@ class UserService:
         return user
     
     
-    async def update_user(self, user_id: UUID, data: UpdateUserAdminSchema) -> User:
+    async def update_user(self, user_id: UUID, data: UpdateUserSchema) -> User:
         user = await self.user_repo.get_by_id(user_id)
         
         if user is None:

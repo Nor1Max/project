@@ -1,24 +1,24 @@
 from fastapi import Depends, APIRouter
 from uuid import UUID
-from api.dependencies import UserServiceDep, require_admin
-from schemas import UpdateUserAdminSchema, UserResponseSchema
+from api.dependencies import UserServiceDep, require_admin, CartServiceDep
+from schemas import UpdateUserSchema, AdminResponseSchema
 
 
 router = APIRouter(tags=['Admin'])
 
 
-@router.get('/all', response_model=list[UserResponseSchema], dependencies=[Depends(require_admin)])
-async def get_users_all(user_service: UserServiceDep) -> list[UserResponseSchema]:
+@router.get('/all', response_model=list[AdminResponseSchema], dependencies=[Depends(require_admin)])
+async def get_users_all(user_service: UserServiceDep) -> list[AdminResponseSchema]:
     return await user_service.get_user_all()
 
 
-@router.get('/{user_id}', response_model=UserResponseSchema, dependencies=[Depends(require_admin)])
-async def get_user_by_id(user_service: UserServiceDep, user_id: UUID) -> UserResponseSchema:
+@router.get('/{user_id}', response_model=AdminResponseSchema, dependencies=[Depends(require_admin)])
+async def get_user_by_id(user_service: UserServiceDep, user_id: UUID) -> AdminResponseSchema:
     return await user_service.get_user_by_id(user_id)
 
 
-@router.patch('/{user_id}', response_model=UserResponseSchema, dependencies=[Depends(require_admin)])
-async def update_user_admin(user_service: UserServiceDep, user_id: UUID, data: UpdateUserAdminSchema) -> UserResponseSchema:
+@router.patch('/{user_id}', response_model=AdminResponseSchema, dependencies=[Depends(require_admin)])
+async def update_user_admin(user_service: UserServiceDep, user_id: UUID, data: UpdateUserSchema) -> AdminResponseSchema:
     return await user_service.update_user(user_id, data)
 
 
